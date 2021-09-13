@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AiOutlineUserDelete } from 'react-icons/ai';
 
 const ContactListItem = ({
   contactName,
@@ -8,11 +7,11 @@ const ContactListItem = ({
   onClickDeleteContact,
 }) => {
   return (
-    <li >
-      <span >{contactName}:</span>
-      <span >{contactNumber}</span>
-      <button  type="button" onClick={onClickDeleteContact}>
-        Delete <AiOutlineUserDelete size="15px" />
+    <li>
+      <span>{contactName}:</span>
+      <span>{contactNumber}</span>
+      <button type="button" onClick={onClickDeleteContact}>
+        Delete
       </button>
     </li>
   );
