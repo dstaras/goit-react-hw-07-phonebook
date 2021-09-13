@@ -1,29 +1,31 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getFilter } from 'redux/selectors';
-import * as contactsActions from 'redux/actions';
-
-import PropTypes from 'prop-types';
-
-const Filter = () => {
-  const value = useSelector(getFilter);
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import * as actions from "../../redux/phonebook/phonebook-actions";
+import { useSelector, useDispatch } from "react-redux";
+import { stateFilter } from "../../redux/phonebook/phonebook-selectors";
+const useStyles = makeStyles({
+  TextField: {
+    display: "block",
+    marginBottom: 10,
+  },
+});
+export default function Filter() {
   const dispatch = useDispatch();
 
+  const classes = useStyles();
+  const filter = useSelector((state) => stateFilter(state));
   return (
-    <label >
-      Find contacts by name
-      <input
-        type="text"
-        value={value}
-        onChange={e => dispatch(contactsActions.changeFilter(e.target.value))}
-      />
-    </label>
+    <TextField
+      value={filter}
+      onChange={(e) => dispatch(actions.filterContact(e.currentTarget.value))}
+      required
+      fullWidth
+      className={classes.TextField}
+      id="filter"
+      label="Find contact by name "
+      type="text"
+      variant="outlined"
+      placeholder="enter  contact's name"
+    />
   );
-};
-
-Filter.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-};
-
-export default Filter;
+}
