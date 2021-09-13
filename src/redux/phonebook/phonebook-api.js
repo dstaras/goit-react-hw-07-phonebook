@@ -12,16 +12,16 @@ export async function addContacts({ name, number }, contacts) {
     name,
     number,
   };
-  let repeat = contacts.some(
+  const repeat = contacts.some(
     (contact) => contact.name.toLowerCase() === name.toLowerCase()
   );
   if (repeat) {
     return null;
   }
-  axios.post("http://localhost:3000/contacts", data);
+  axios.post("/contacts", data);
   return data;
 }
 export async function deleteContacts(id) {
-  axios.delete(`http://localhost:3000/contacts/${id}`);
+  axios.delete(`/contacts/${id}`);
   return id;
 }

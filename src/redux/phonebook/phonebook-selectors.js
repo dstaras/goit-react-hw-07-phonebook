@@ -8,9 +8,8 @@ export const getError = (state) => state.contacts.error;
 export const visibleItems = createSelector(
   [stateItems, stateFilter],
   (items, filter) => {
-    const normalizedFilter = filter.toLowerCase();
     return items.filter((item) =>
-      item.name.toLowerCase().includes(normalizedFilter)
+      item.name.toLowerCase().includes(filter.toLowerCase())
     );
   }
 );
